@@ -167,20 +167,64 @@ faqItems.forEach((item) => {
   });
 });
 
-// ===== Contact form -> mailto compose =====
+// ===== Contact form =====
+// 本番のフォーム送信を有効にするには、Formspree(無料)でフォームを作成し、
+// 下の FORMSPREE_ENDPOINT を発行された URL に置き換えてください。
+//   例: 'https://formspree.io/f/abcdwxyz'
+// 空のままだと、送信時にメールソフトが起動するフォールバック動作になります。
+const FORMSPREE_ENDPOINT = '';
+const CONTACT_EMAIL = 'info@slc.co.jp';
+
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
+  const statusEl = document.getElementById('cf-status');
+  const submitBtn = contactForm.querySelector('button[type="submit"]');
+  const btnLabel = submitBtn ? submitBtn.textContent : '送信する';
+
+  const setStatus = (msg, type) => {
+    if (!statusEl) return;
+    statusEl.textContent = msg;
+    statusEl.className = 'form-status' + (type ? ' is-' + type : '');
+  };
+
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!contactForm.reportValidity()) return;
+
     const name = document.getElementById('cf-name').value.trim();
     const email = document.getElementById('cf-email').value.trim();
     const msg = document.getElementById('cf-msg').value.trim();
-    const subject = encodeURIComponent(`【お問い合わせ】${name} 様`);
-    const body = encodeURIComponent(
-      `お名前：${name}\nメールアドレス：${email}\n\n${msg}`
-    );
-    window.location.href = `mailto:info@slc.co.jp?subject=${subject}&body=${body}`;
+
+    // フォールバック: エンドポイント未設定ならメールソフトを起動
+    if (!FORMSPREE_ENDPOINT) {
+      const subject = encodeURIComponent(`【お問い合わせ】${name} 様`);
+      const body = encodeURIComponent(`お名前：${name}\nメールアドレス：${email}\n\n${msg}`);
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+      return;
+    }
+
+    // 本番: Formspree へ非同期送信（ページ遷移なし）
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '送信中…'; }
+    setStatus('送信しています…', 'pending');
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(contactForm),
+      });
+      if (res.ok) {
+        contactForm.reset();
+        setStatus('お問い合わせを受け付けました。ご連絡ありがとうございます。', 'ok');
+      } else {
+        const data = await res.json().catch(() => ({}));
+        const detail = data.errors ? data.errors.map((x) => x.message).join(', ') : '';
+        setStatus('送信に失敗しました。' + (detail || `お手数ですが ${CONTACT_EMAIL} へ直接ご連絡ください。`), 'err');
+      }
+    } catch (_) {
+      setStatus(`送信に失敗しました。お手数ですが ${CONTACT_EMAIL} へ直接ご連絡ください。`, 'err');
+    } finally {
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = btnLabel; }
+    }
   });
 }
 
