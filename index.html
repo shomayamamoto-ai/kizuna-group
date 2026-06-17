@@ -40,10 +40,10 @@
         </span>
       </a>
       <nav class="nav" id="nav" aria-label="メインメニュー">
-        <a href="#about">会社概要</a>
-        <a href="#profile">代表紹介</a>
-        <a href="#vision">理念</a>
+        <a href="#about">私たちについて</a>
         <a href="#business">事業内容</a>
+        <a href="#company">会社概要</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact" class="nav-cta">お問い合わせ</a>
       </nav>
       <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false">
@@ -165,7 +165,7 @@
       <div class="profile-grid">
         <div class="profile-portrait reveal-up">
           <div class="portrait-frame">
-            <img src="assets/logo.png" alt="株式会社SLC" class="portrait-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
+            <img src="assets/representative.jpg" alt="代表取締役 松下雄飛" class="portrait-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
             <span class="portrait-initial" style="display:none">松</span>
           </div>
           <p class="portrait-role">代表取締役</p>
@@ -267,6 +267,59 @@
     </div>
   </section>
 
+  <!-- Company overview -->
+  <section class="section company" id="company">
+    <div class="container">
+      <div class="section-head center reveal-up">
+        <p class="section-en center"><span class="num">06</span> COMPANY</p>
+        <h2 class="section-title">会社概要</h2>
+      </div>
+      <div class="company-layout">
+        <div class="info-table reveal-up">
+          <dl><dt>商号</dt><dd>株式会社SLC</dd></dl>
+          <dl><dt>代表者</dt><dd>代表取締役　松下 雄飛</dd></dl>
+          <dl><dt>設立</dt><dd>2026年</dd></dl>
+          <dl><dt>事業内容</dt><dd>SNS運用支援／広告運用サポート／ブランディング支援／集客導線設計／経営者マッチング事業「絆BIZ LINK」／ティーチング・事業相談</dd></dl>
+          <dl><dt>グループ</dt><dd>絆グループ（絆BIZ LINK）</dd></dl>
+          <dl><dt>所在地</dt><dd><span class="muted">準備中</span></dd></dl>
+          <dl><dt>お問い合わせ</dt><dd><a href="mailto:info@slc.co.jp">info@slc.co.jp</a></dd></dl>
+        </div>
+        <figure class="company-figure reveal-up" aria-label="イメージ">
+          <img src="assets/office.jpg" alt="株式会社SLC オフィスイメージ" class="figure-img" onerror="this.style.display='none';this.closest('.company-figure').classList.add('placeholder');" />
+          <figcaption class="figure-mark">絆</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq" id="faq">
+    <div class="container narrow">
+      <div class="section-head center reveal-up">
+        <p class="section-en center"><span class="num">07</span> FAQ</p>
+        <h2 class="section-title">よくあるご質問</h2>
+      </div>
+      <div class="faq-list reveal-up">
+        <details class="faq-item">
+          <summary>どのような企業・個人が対象ですか？<span class="faq-ic" aria-hidden="true"></span></summary>
+          <div class="faq-a">これから挑戦を始める個人事業主から、さらなる成長を目指す経営者まで幅広く対応しています。規模や業種を問わず、まずはお気軽にご相談ください。</div>
+        </details>
+        <details class="faq-item">
+          <summary>「絆BIZ LINK」とは何ですか？<span class="faq-ic" aria-hidden="true"></span></summary>
+          <div class="faq-a">挑戦する経営者同士を繋ぐ、絆グループの経営者マッチング事業です。信頼でつながる出会いの場を通じて、新たなビジネスと協業を生み出します。</div>
+        </details>
+        <details class="faq-item">
+          <summary>SNSや広告の運用だけでも依頼できますか？<span class="faq-ic" aria-hidden="true"></span></summary>
+          <div class="faq-a">はい、単体でのご依頼も可能です。SNS運用・広告運用・ブランディング・集客導線設計を、課題に応じて単独でも一気通貫でもご支援します。</div>
+        </details>
+        <details class="faq-item">
+          <summary>相談したいのですが、費用はかかりますか？<span class="faq-ic" aria-hidden="true"></span></summary>
+          <div class="faq-a">まずはお問い合わせフォームよりご連絡ください。ご状況を伺ったうえで、最適なプランとお見積りをご提案します。</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- Quote band -->
   <section class="quote-band" aria-label="メッセージ">
     <div class="quote-line" aria-hidden="true"></div>
@@ -282,7 +335,22 @@
       <p class="section-en center">CONTACT</p>
       <h2 class="contact-title">挑戦を、ともに。</h2>
       <p class="contact-text">事業のご相談、協業・取材のお問い合わせは、お気軽にご連絡ください。<br />あなたの挑戦に、本気で向き合います。</p>
-      <a href="mailto:info@slc.co.jp" class="btn btn-gold btn-lg">お問い合わせはこちら</a>
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="field">
+          <input id="cf-name" name="name" type="text" required placeholder=" " />
+          <label for="cf-name">お名前</label>
+        </div>
+        <div class="field">
+          <input id="cf-email" name="email" type="email" required placeholder=" " />
+          <label for="cf-email">メールアドレス</label>
+        </div>
+        <div class="field full">
+          <textarea id="cf-msg" name="message" rows="5" required placeholder=" "></textarea>
+          <label for="cf-msg">お問い合わせ内容</label>
+        </div>
+        <button type="submit" class="btn btn-gold btn-lg">送信する</button>
+        <p class="form-note">送信ボタンを押すと、ご利用のメールソフトが起動します。<br />または <a href="mailto:info@slc.co.jp">info@slc.co.jp</a> へ直接お送りください。</p>
+      </form>
     </div>
   </section>
 
@@ -296,10 +364,11 @@
         <p class="footer-tagline">挑戦を繋ぎ、未来を創る</p>
       </div>
       <nav class="footer-nav" aria-label="フッターメニュー">
-        <a href="#about">会社概要</a>
+        <a href="#about">私たちについて</a>
         <a href="#profile">代表紹介</a>
-        <a href="#vision">理念</a>
         <a href="#business">事業内容</a>
+        <a href="#company">会社概要</a>
+        <a href="#faq">よくあるご質問</a>
         <a href="#contact">お問い合わせ</a>
       </nav>
     </div>

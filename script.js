@@ -90,7 +90,7 @@ const statObserver = new IntersectionObserver(
 document.querySelectorAll('.stat-num[data-count]').forEach((el) => statObserver.observe(el));
 
 // ===== Active nav link on scroll =====
-const sections = ['about', 'profile', 'vision', 'business', 'contact']
+const sections = ['about', 'business', 'company', 'faq', 'contact']
   .map((id) => document.getElementById(id))
   .filter(Boolean);
 const navLinks = Array.from(nav.querySelectorAll('a'));
@@ -153,6 +153,35 @@ if (!reduceMotion && (heroEmblem || heroGlow)) {
     },
     { passive: true }
   );
+}
+
+// ===== FAQ: open one at a time =====
+const faqItems = document.querySelectorAll('.faq-item');
+faqItems.forEach((item) => {
+  item.addEventListener('toggle', () => {
+    if (item.open) {
+      faqItems.forEach((other) => {
+        if (other !== item) other.open = false;
+      });
+    }
+  });
+});
+
+// ===== Contact form -> mailto compose =====
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!contactForm.reportValidity()) return;
+    const name = document.getElementById('cf-name').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const msg = document.getElementById('cf-msg').value.trim();
+    const subject = encodeURIComponent(`【お問い合わせ】${name} 様`);
+    const body = encodeURIComponent(
+      `お名前：${name}\nメールアドレス：${email}\n\n${msg}`
+    );
+    window.location.href = `mailto:info@slc.co.jp?subject=${subject}&body=${body}`;
+  });
 }
 
 // ===== Hero particles =====
