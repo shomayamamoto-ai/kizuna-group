@@ -233,15 +233,29 @@
         <p class="section-en"><span class="num">03</span> REPRESENTATIVE</p>
         <h2 class="section-title">代表紹介</h2>
       </div>
-      <div class="profile-grid">
-        <div class="profile-portrait reveal-up">
-          <div class="portrait-frame">
-            <img src="assets/representative.jpg" alt="代表取締役 松下雄飛" class="portrait-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
-            <span class="portrait-initial" style="display:none">松</span>
-          </div>
+      <div class="profile-wrap">
+        <div class="profile-id reveal-up">
+          <span class="profile-id-emblem" aria-hidden="true">
+            <svg class="emblem-svg" viewBox="0 0 100 100" role="img" aria-label="株式会社SLC エンブレム">
+              <defs>
+                <linearGradient id="emb-p" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#f6e3b4" />
+                  <stop offset="0.5" stop-color="#caa24c" />
+                  <stop offset="1" stop-color="#7a5a23" />
+                </linearGradient>
+              </defs>
+              <circle cx="50" cy="50" r="46" fill="none" stroke="url(#emb-p)" stroke-width="1.4" opacity="0.55" />
+              <g fill="none" stroke="url(#emb-p)" stroke-width="4.4" stroke-linecap="round">
+                <path d="M50 28 A22 22 0 1 0 50 72" />
+                <path d="M50 72 A22 22 0 1 0 50 28" opacity="0.85" />
+              </g>
+              <circle cx="50" cy="50" r="3" fill="url(#emb-p)" />
+            </svg>
+          </span>
           <p class="portrait-role">代表取締役</p>
           <p class="portrait-name">松下 雄飛</p>
           <p class="portrait-name-en">Yuhi Matsushita</p>
+          <span class="profile-id-divider" aria-hidden="true"></span>
         </div>
         <div class="profile-body reveal-up">
           <h3 class="profile-lead">「挑戦が応援される世界」を、<br />本気で創りにいく。</h3>
@@ -396,10 +410,6 @@
           <dl><dt>所在地</dt><dd><span class="muted">準備中</span></dd></dl>
           <dl><dt>お問い合わせ</dt><dd><a href="mailto:info@slc.co.jp">info@slc.co.jp</a></dd></dl>
         </div>
-        <figure class="company-figure reveal-up" aria-label="イメージ">
-          <img src="assets/office.jpg" alt="株式会社SLC オフィスイメージ" class="figure-img" onerror="this.style.display='none';this.closest('.company-figure').classList.add('placeholder');" />
-          <figcaption class="figure-mark">絆</figcaption>
-        </figure>
       </div>
     </div>
   </section>
