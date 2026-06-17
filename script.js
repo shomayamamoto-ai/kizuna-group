@@ -107,6 +107,54 @@ const sectionObserver = new IntersectionObserver(
 );
 sections.forEach((s) => sectionObserver.observe(s));
 
+// ===== Cursor spotlight (desktop, pointer-fine only) =====
+const spotlight = document.getElementById('spotlight');
+const finePointer = window.matchMedia('(pointer: fine)').matches;
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (spotlight && finePointer && !reduceMotion) {
+  window.addEventListener('mousemove', (e) => {
+    spotlight.classList.add('on');
+    spotlight.style.setProperty('--mx', e.clientX + 'px');
+    spotlight.style.setProperty('--my', e.clientY + 'px');
+  });
+  window.addEventListener('mouseleave', () => spotlight.classList.remove('on'));
+}
+
+// ===== 3D tilt on cards =====
+if (finePointer && !reduceMotion) {
+  const tiltCards = document.querySelectorAll('.biz-card, .vision-card, .value-card');
+  const MAX = 7;
+  tiltCards.forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform =
+        `perspective(900px) rotateX(${(-py * MAX).toFixed(2)}deg) rotateY(${(px * MAX).toFixed(2)}deg) translateY(-8px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+
+// ===== Hero parallax =====
+const heroEmblem = document.querySelector('.hero-emblem');
+const heroGlow = document.querySelector('.hero-glow');
+if (!reduceMotion && (heroEmblem || heroGlow)) {
+  window.addEventListener(
+    'scroll',
+    () => {
+      const y = window.scrollY;
+      if (y < window.innerHeight) {
+        if (heroEmblem) heroEmblem.style.transform = `translateY(${y * 0.18}px)`;
+        if (heroGlow) heroGlow.style.transform = `translateX(-50%) translateY(${y * 0.12}px)`;
+      }
+    },
+    { passive: true }
+  );
+}
+
 // ===== Hero particles =====
 const particleHost = document.getElementById('heroParticles');
 if (particleHost && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
