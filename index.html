@@ -4,27 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>株式会社SLC｜挑戦を繋ぎ、未来を創る</title>
-  <meta name="description" content="株式会社SLC ― 挑戦を繋ぎ、未来を創る。SNS運用支援、広告運用、ブランディング、経営者マッチング事業「絆BIZ LINK」を展開。" />
+  <meta name="description" content="株式会社SLC ― 挑戦を繋ぎ、未来を創る。SNS運用支援、広告運用、ブランディング、集客導線設計、経営者マッチング事業「絆BIZ LINK」を展開する、挑戦を応援する会社です。" />
+  <meta property="og:title" content="株式会社SLC｜挑戦を繋ぎ、未来を創る" />
+  <meta property="og:description" content="一人ひとりの挑戦が応援される世界を創る。株式会社SLC コーポレートサイト。" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="icon" href="assets/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Serif+JP:wght@400;500;600;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Loading veil -->
+  <div class="loader" id="loader">
+    <div class="loader-mark">絆</div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
   <!-- Header -->
   <header class="site-header" id="header">
     <div class="container header-inner">
-      <a href="#hero" class="brand">
-        <span class="brand-mark">SLC</span>
-        <span class="brand-name">株式会社SLC</span>
+      <a href="#hero" class="brand" aria-label="株式会社SLC ホーム">
+        <img src="assets/logo.png" alt="株式会社SLC" class="brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" />
+        <span class="brand-mark" style="display:none">絆</span>
+        <span class="brand-text">
+          <span class="brand-name">株式会社SLC</span>
+          <span class="brand-sub">SLC Inc.</span>
+        </span>
       </a>
-      <nav class="nav" id="nav">
-        <a href="#about">代表紹介</a>
-        <a href="#vision">ビジョン</a>
+      <nav class="nav" id="nav" aria-label="メインメニュー">
+        <a href="#about">会社概要</a>
+        <a href="#profile">代表紹介</a>
+        <a href="#vision">理念</a>
         <a href="#business">事業内容</a>
         <a href="#contact" class="nav-cta">お問い合わせ</a>
       </nav>
-      <button class="nav-toggle" id="navToggle" aria-label="メニュー" aria-expanded="false">
+      <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -32,50 +50,104 @@
 
   <!-- Hero -->
   <section class="hero" id="hero">
-    <div class="hero-bg"></div>
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-glow"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-particles" id="heroParticles"></div>
+    </div>
     <div class="container hero-inner">
-      <p class="hero-eyebrow">CHALLENGE &amp; CREATE THE FUTURE</p>
-      <h1 class="hero-title">挑戦を繋ぎ、<br />未来を創る</h1>
-      <p class="hero-company">株式会社SLC</p>
-      <div class="hero-actions">
+      <div class="hero-emblem reveal-up">
+        <img src="assets/logo.png" alt="株式会社SLC ロゴ" class="hero-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <span class="hero-emblem-fallback" style="display:none">絆</span>
+      </div>
+      <p class="hero-eyebrow reveal-up">CHALLENGE &amp; CREATE THE FUTURE</p>
+      <h1 class="hero-title reveal-up">挑戦を繋ぎ、<br /><span class="hero-title-accent">未来を創る</span></h1>
+      <p class="hero-company reveal-up">株式会社SLC</p>
+      <div class="hero-actions reveal-up">
         <a href="#business" class="btn btn-gold">事業内容を見る</a>
         <a href="#contact" class="btn btn-outline">お問い合わせ</a>
       </div>
     </div>
-    <div class="hero-scroll"><span>SCROLL</span></div>
+    <a href="#about" class="hero-scroll" aria-label="次のセクションへ"><span>SCROLL</span></a>
   </section>
 
-  <!-- About / 代表紹介 -->
+  <!-- Marquee band -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>SNS運用支援</span><i>✦</i><span>広告運用</span><i>✦</i><span>ブランディング</span><i>✦</i><span>集客導線設計</span><i>✦</i><span>絆BIZ LINK</span><i>✦</i><span>ティーチング</span><i>✦</i>
+      <span>SNS運用支援</span><i>✦</i><span>広告運用</span><i>✦</i><span>ブランディング</span><i>✦</i><span>集客導線設計</span><i>✦</i><span>絆BIZ LINK</span><i>✦</i><span>ティーチング</span><i>✦</i>
+    </div>
+  </div>
+
+  <!-- About / 会社概要・哲学 -->
   <section class="section about" id="about">
     <div class="container">
-      <div class="section-head">
-        <p class="section-en">REPRESENTATIVE</p>
+      <div class="about-layout">
+        <div class="section-head left reveal-up">
+          <p class="section-en"><span class="num">01</span> ABOUT</p>
+          <h2 class="section-title">挑戦する人を、<br />本気で応援する。</h2>
+        </div>
+        <div class="about-text reveal-up">
+          <p>株式会社SLCは、挑戦するすべての人の隣に立ち、その一歩を加速させる会社です。SNS・広告・ブランディング・集客といった「伝える力」を磨き上げ、経営者同士を繋ぐ場を生み出すことで、挑戦が連鎖し、未来へと広がっていく循環をつくります。</p>
+          <p>私たちが信じているのは、たった一つ。<strong>「一人ひとりの挑戦が、応援される世界を創る。」</strong>その実現に向けて、本気で伴走し続けます。</p>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-num" data-count="2026" data-suffix="">2026</span>
+              <span class="stat-label">設立</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num" data-count="100" data-suffix="億">0</span>
+              <span class="stat-label">5期目 売上目標</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num" data-count="6" data-suffix="">0</span>
+              <span class="stat-label">事業領域</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Representative / 代表紹介 -->
+  <section class="section profile" id="profile">
+    <div class="container">
+      <div class="section-head center reveal-up">
+        <p class="section-en"><span class="num">02</span> REPRESENTATIVE</p>
         <h2 class="section-title">代表紹介</h2>
       </div>
-      <div class="about-grid">
-        <div class="about-portrait">
+      <div class="profile-grid">
+        <div class="profile-portrait reveal-up">
           <div class="portrait-frame">
-            <span class="portrait-initial">松</span>
+            <img src="assets/logo.png" alt="株式会社SLC" class="portrait-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
+            <span class="portrait-initial" style="display:none">松</span>
           </div>
           <p class="portrait-role">代表取締役</p>
           <p class="portrait-name">松下 雄飛</p>
+          <p class="portrait-name-en">Yuhi Matsushita</p>
         </div>
-        <div class="about-body">
-          <h3 class="about-lead">挑戦する人を、本気で応援する。</h3>
-          <ul class="timeline">
+        <div class="profile-body reveal-up">
+          <h3 class="profile-lead">「挑戦が応援される世界」を、<br />本気で創りにいく。</h3>
+          <ol class="timeline">
             <li>
               <span class="timeline-year">2003</span>
-              <span class="timeline-text">滋賀県生まれ</span>
+              <div class="timeline-body">
+                <span class="timeline-text">滋賀県に生まれる</span>
+              </div>
             </li>
             <li>
               <span class="timeline-year">2026</span>
-              <span class="timeline-text">株式会社SLC を設立</span>
+              <div class="timeline-body">
+                <span class="timeline-text">株式会社SLC を設立</span>
+              </div>
             </li>
             <li>
               <span class="timeline-year">2026</span>
-              <span class="timeline-text">絆グループ・絆BIZ LINK を始動</span>
+              <div class="timeline-body">
+                <span class="timeline-text">絆グループ・絆BIZ LINK を始動</span>
+              </div>
             </li>
-          </ul>
+          </ol>
         </div>
       </div>
     </div>
@@ -84,16 +156,22 @@
   <!-- Vision & Goal -->
   <section class="section vision" id="vision">
     <div class="container">
+      <div class="section-head center reveal-up">
+        <p class="section-en"><span class="num">03</span> PHILOSOPHY</p>
+        <h2 class="section-title">理念</h2>
+      </div>
       <div class="vision-grid">
-        <article class="vision-card">
+        <article class="vision-card reveal-up">
           <p class="card-en">VISION</p>
-          <h2 class="card-title">ビジョン</h2>
+          <h3 class="card-title">ビジョン</h3>
           <p class="card-lead">一人ひとりの挑戦が<br />応援される世界を創る。</p>
+          <p class="card-note">挑戦が孤独にならない社会へ。出会いと支援が循環する仕組みをつくります。</p>
         </article>
-        <article class="vision-card vision-card--goal">
+        <article class="vision-card vision-card--goal reveal-up">
           <p class="card-en">GOAL</p>
-          <h2 class="card-title">目標</h2>
-          <p class="card-lead"><span class="goal-num">5</span>期目<br /><span class="goal-num">100</span>億円企業</p>
+          <h3 class="card-title">目標</h3>
+          <p class="card-lead"><span class="goal-num">5</span><span class="goal-unit">期目</span><br /><span class="goal-num goal-num--big">100</span><span class="goal-unit">億円企業</span></p>
+          <p class="card-note">挑戦を支える基盤を、確かな事業成長とともに築き上げます。</p>
         </article>
       </div>
     </div>
@@ -102,51 +180,53 @@
   <!-- Business -->
   <section class="section business" id="business">
     <div class="container">
-      <div class="section-head">
-        <p class="section-en">OUR BUSINESS</p>
+      <div class="section-head center reveal-up">
+        <p class="section-en"><span class="num">04</span> OUR BUSINESS</p>
         <h2 class="section-title">事業内容</h2>
+        <p class="section-desc">「伝える」「繋ぐ」「育てる」――挑戦を前へ進める6つの事業。</p>
       </div>
       <div class="business-grid">
-        <article class="biz-card">
+        <article class="biz-card reveal-up">
           <span class="biz-no">01</span>
           <h3>SNS運用支援</h3>
           <p>アカウント設計から運用代行まで、ブランドの世界観を伝える発信を支援します。</p>
         </article>
-        <article class="biz-card">
+        <article class="biz-card reveal-up">
           <span class="biz-no">02</span>
           <h3>広告運用サポート</h3>
           <p>成果に直結する広告戦略を設計・運用し、投資対効果を最大化します。</p>
         </article>
-        <article class="biz-card">
+        <article class="biz-card reveal-up">
           <span class="biz-no">03</span>
           <h3>ブランディング支援</h3>
           <p>価値が正しく伝わるブランド構築で、選ばれ続ける存在へ導きます。</p>
         </article>
-        <article class="biz-card">
+        <article class="biz-card reveal-up">
           <span class="biz-no">04</span>
           <h3>集客導線設計</h3>
           <p>認知から成約までの導線を一気通貫で設計し、安定した集客を実現します。</p>
         </article>
-        <article class="biz-card biz-card--feature">
+        <article class="biz-card biz-card--feature reveal-up">
           <span class="biz-no">05</span>
+          <span class="biz-badge">FEATURED</span>
           <h3>経営者マッチング事業<br /><span class="biz-brand">絆BIZ LINK</span></h3>
-          <p>挑戦する経営者同士を繋ぎ、新たなビジネスと信頼の輪を広げます。</p>
+          <p>挑戦する経営者同士を繋ぎ、新たなビジネスと信頼の輪を広げる、絆グループの中核事業です。</p>
         </article>
-        <article class="biz-card">
+        <article class="biz-card reveal-up">
           <span class="biz-no">06</span>
-          <h3>ティーチング／事業相談</h3>
+          <h3>ティーチング／<br />事業相談</h3>
           <p>培った知見をもとに、事業の立ち上げ・成長フェーズを伴走支援します。</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
+  <!-- CTA / Contact -->
   <section class="section contact" id="contact">
-    <div class="container contact-inner">
-      <p class="section-en">CONTACT</p>
+    <div class="container contact-inner reveal-up">
+      <p class="section-en center">CONTACT</p>
       <h2 class="contact-title">挑戦を、ともに。</h2>
-      <p class="contact-text">事業のご相談、協業・取材のお問い合わせはお気軽にご連絡ください。</p>
+      <p class="contact-text">事業のご相談、協業・取材のお問い合わせは、お気軽にご連絡ください。<br />あなたの挑戦に、本気で向き合います。</p>
       <a href="mailto:info@slc.co.jp" class="btn btn-gold btn-lg">お問い合わせはこちら</a>
     </div>
   </section>
@@ -155,13 +235,23 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <span class="brand-mark">SLC</span>
-        <p>株式会社SLC</p>
+        <img src="assets/logo.png" alt="株式会社SLC" class="footer-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" />
+        <span class="brand-mark footer-mark" style="display:none">絆</span>
+        <p class="footer-name">株式会社SLC</p>
         <p class="footer-tagline">挑戦を繋ぎ、未来を創る</p>
       </div>
-      <p class="footer-copy">&copy; 2026 SLC Inc. All Rights Reserved.</p>
+      <nav class="footer-nav" aria-label="フッターメニュー">
+        <a href="#about">会社概要</a>
+        <a href="#profile">代表紹介</a>
+        <a href="#vision">理念</a>
+        <a href="#business">事業内容</a>
+        <a href="#contact">お問い合わせ</a>
+      </nav>
     </div>
+    <p class="footer-copy">&copy; 2026 SLC Inc. All Rights Reserved.</p>
   </footer>
+
+  <a href="#hero" class="to-top" id="toTop" aria-label="ページ上部へ戻る">↑</a>
 
   <script src="script.js"></script>
 </body>
