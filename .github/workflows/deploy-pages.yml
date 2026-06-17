@@ -16,10 +16,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  # Pages を有効化し、公開するファイルをアーティファクト化する
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -35,6 +33,14 @@ jobs:
         with:
           path: .
 
+  # アーティファクトを GitHub Pages にデプロイする
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
