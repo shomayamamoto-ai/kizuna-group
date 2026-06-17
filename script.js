@@ -1,8 +1,25 @@
-// ===== Loader =====
-window.addEventListener('load', () => {
-  const loader = document.getElementById('loader');
-  if (loader) setTimeout(() => loader.classList.add('done'), 500);
-});
+// ===== Opening movie =====
+(() => {
+  const intro = document.getElementById('loader');
+  if (!intro) return;
+  const skipBtn = document.getElementById('introSkip');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let dismissed = false;
+  const dismiss = () => {
+    if (dismissed) return;
+    dismissed = true;
+    intro.classList.add('done');
+    document.body.classList.remove('intro-active');
+    window.setTimeout(() => intro.remove(), 1100);
+  };
+  document.body.classList.add('intro-active');
+  if (skipBtn) skipBtn.addEventListener('click', dismiss);
+  intro.addEventListener('click', (e) => {
+    if (e.target === intro) dismiss();
+  });
+  // 自動で再生し終えたら閉幕（reduced-motion は短縮）
+  window.addEventListener('load', () => setTimeout(dismiss, reduce ? 600 : 3400));
+})();
 
 // ===== Header scroll state + progress bar + to-top =====
 const header = document.getElementById('header');
@@ -21,22 +38,27 @@ function onScroll() {
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
-// ===== Mobile nav =====
+// ===== Mobile nav (hamburger) =====
 const navToggle = document.getElementById('navToggle');
 const nav = document.getElementById('nav');
-navToggle.addEventListener('click', () => {
-  const open = nav.classList.toggle('open');
+const navBackdrop = document.getElementById('navBackdrop');
+
+function setNav(open) {
+  nav.classList.toggle('open', open);
   navToggle.classList.toggle('active', open);
   navToggle.setAttribute('aria-expanded', String(open));
-  document.body.style.overflow = open ? 'hidden' : '';
-});
-nav.querySelectorAll('a').forEach((link) => {
-  link.addEventListener('click', () => {
-    nav.classList.remove('open');
-    navToggle.classList.remove('active');
-    navToggle.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  });
+  navToggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+  document.body.classList.toggle('nav-locked', open);
+  if (navBackdrop) {
+    if (open) navBackdrop.hidden = false;
+    navBackdrop.classList.toggle('show', open);
+  }
+}
+navToggle.addEventListener('click', () => setNav(!nav.classList.contains('open')));
+nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setNav(false)));
+if (navBackdrop) navBackdrop.addEventListener('click', () => setNav(false));
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && nav.classList.contains('open')) setNav(false);
 });
 
 // ===== Scroll reveal =====
@@ -89,23 +111,51 @@ const statObserver = new IntersectionObserver(
 );
 document.querySelectorAll('.stat-num[data-count]').forEach((el) => statObserver.observe(el));
 
-// ===== Active nav link on scroll =====
-const sections = ['about', 'business', 'company', 'faq', 'contact']
+// ===== Active nav link + breadcrumb on scroll =====
+const crumbLabels = {
+  about: '私たちについて',
+  values: '私たちの価値観',
+  profile: '代表紹介',
+  vision: '企業理念',
+  business: '事業内容',
+  strength: '選ばれる理由',
+  company: '会社概要',
+  faq: 'よくある質問',
+  contact: 'お問い合わせ',
+};
+const navHrefs = new Set(['about', 'business', 'company', 'faq', 'contact']);
+const sections = Object.keys(crumbLabels)
   .map((id) => document.getElementById(id))
   .filter(Boolean);
 const navLinks = Array.from(nav.querySelectorAll('a'));
+const breadcrumb = document.getElementById('breadcrumb');
+const breadcrumbCurrent = document.getElementById('breadcrumbCurrent');
+const heroEl = document.getElementById('hero');
+
 const sectionObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const id = entry.target.id;
-        navLinks.forEach((l) => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+        if (navHrefs.has(id)) {
+          navLinks.forEach((l) => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+        }
+        if (breadcrumbCurrent && crumbLabels[id]) breadcrumbCurrent.textContent = crumbLabels[id];
       }
     });
   },
   { threshold: 0.5 }
 );
 sections.forEach((s) => sectionObserver.observe(s));
+
+// Show breadcrumb once the hero is scrolled past
+if (breadcrumb && heroEl) {
+  const heroObserver = new IntersectionObserver(
+    (entries) => entries.forEach((e) => breadcrumb.classList.toggle('is-visible', !e.isIntersecting)),
+    { threshold: 0, rootMargin: '-120px 0px 0px 0px' }
+  );
+  heroObserver.observe(heroEl);
+}
 
 // ===== Cursor spotlight (desktop, pointer-fine only) =====
 const spotlight = document.getElementById('spotlight');
