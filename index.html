@@ -17,23 +17,15 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Opening movie -->
+  <!-- Opening movie (SLC original, ~2.6s) -->
   <div class="intro" id="loader" role="presentation">
     <div class="intro-glow" aria-hidden="true"></div>
+    <div class="intro-rings" aria-hidden="true"><span></span><span></span></div>
     <div class="intro-inner">
-      <svg class="intro-emblem" viewBox="0 0 100 100" aria-hidden="true">
-        <defs>
-          <linearGradient id="emb-intro" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#f6e3b4" />
-            <stop offset="0.5" stop-color="#caa24c" />
-            <stop offset="1" stop-color="#7a5a23" />
-          </linearGradient>
-        </defs>
-        <circle class="intro-ring" cx="50" cy="50" r="46" fill="none" stroke="url(#emb-intro)" stroke-width="1.4" />
-        <path class="intro-stroke" d="M50 28 A22 22 0 1 0 50 72" fill="none" stroke="url(#emb-intro)" stroke-width="4.4" stroke-linecap="round" />
-        <path class="intro-stroke intro-stroke--2" d="M50 72 A22 22 0 1 0 50 28" fill="none" stroke="url(#emb-intro)" stroke-width="4.4" stroke-linecap="round" />
-        <circle class="intro-dot" cx="50" cy="50" r="3" fill="url(#emb-intro)" />
-      </svg>
+      <div class="intro-logo">
+        <img src="assets/logo.jpg" alt="株式会社SLC" />
+        <span class="intro-shine" aria-hidden="true"></span>
+      </div>
       <div class="intro-word">株式会社SLC</div>
       <div class="intro-tag">挑戦を繋ぎ、未来を創る</div>
     </div>

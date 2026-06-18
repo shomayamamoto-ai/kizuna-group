@@ -18,7 +18,7 @@
     if (e.target === intro) dismiss();
   });
   // 自動で再生し終えたら閉幕（reduced-motion は短縮）
-  window.addEventListener('load', () => setTimeout(dismiss, reduce ? 600 : 3400));
+  window.addEventListener('load', () => setTimeout(dismiss, reduce ? 500 : 2500));
 })();
 
 // ===== Header scroll state + progress bar + to-top =====
