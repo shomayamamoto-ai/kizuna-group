@@ -234,8 +234,9 @@
         <h2 class="section-title">代表紹介</h2>
       </div>
       <div class="profile-wrap">
-        <div class="profile-id reveal-up">
-          <span class="profile-id-emblem" aria-hidden="true">
+        <figure class="profile-photo reveal-up">
+          <img src="assets/representative.jpg" alt="代表取締役 松下 雄飛" width="444" height="666" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('no-photo');this.nextElementSibling.style.display='flex';" />
+          <span class="profile-photo-fallback" aria-hidden="true">
             <svg class="emblem-svg" viewBox="0 0 100 100" role="img" aria-label="株式会社SLC エンブレム">
               <defs>
                 <linearGradient id="emb-p" x1="0" y1="0" x2="1" y2="1">
@@ -252,6 +253,8 @@
               <circle cx="50" cy="50" r="3" fill="url(#emb-p)" />
             </svg>
           </span>
+        </figure>
+        <div class="profile-id reveal-up">
           <p class="portrait-role">代表取締役</p>
           <p class="portrait-name">松下 雄飛</p>
           <p class="portrait-name-en">Yuhi Matsushita</p>

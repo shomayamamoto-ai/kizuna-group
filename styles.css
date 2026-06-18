@@ -368,6 +368,24 @@ body.nav-locked { overflow: hidden; }
 
 /* ===== Profile ===== */
 .profile-wrap { max-width: 760px; margin: 0 auto; }
+.profile-photo {
+  width: 232px; margin: 0 auto 28px; position: relative;
+  border-radius: 4px; overflow: hidden; border: 1px solid var(--line);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55);
+}
+.profile-photo img { width: 100%; height: auto; display: block; }
+.profile-photo::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: 4px;
+  border: 1px solid rgba(var(--gold-rgb), 0.28);
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.4);
+}
+.profile-photo-fallback {
+  display: none; width: 100%; aspect-ratio: 2 / 3;
+  align-items: center; justify-content: center;
+  background: radial-gradient(circle at 35% 30%, #1b1b1f, var(--black));
+}
+.profile-photo-fallback .emblem-svg { width: 46%; height: auto; display: block; }
+.profile-photo.no-photo { box-shadow: none; }
 .profile-id { text-align: center; margin-bottom: 56px; }
 .profile-id-emblem { display: inline-block; width: 66px; height: 66px; margin-bottom: 22px; filter: drop-shadow(0 6px 20px rgba(var(--gold-rgb), 0.2)); }
 .profile-id-emblem .emblem-svg { width: 100%; height: 100%; display: block; }
