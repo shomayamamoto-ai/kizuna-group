@@ -573,6 +573,61 @@ section[id] { scroll-margin-top: 84px; }
 /* ===== Narrow container ===== */
 .container.narrow { max-width: 860px; }
 
+/* ===== Comparison / 他社との違い ===== */
+.compare-quadrant {
+  position: relative; max-width: 680px; margin: 0 auto;
+  aspect-ratio: 1 / 0.74; border: 1px solid var(--line); border-radius: 2px;
+  background:
+    radial-gradient(circle at 78% 24%, rgba(var(--gold-rgb), 0.1), transparent 55%),
+    var(--black-card);
+}
+.q-line { position: absolute; background: var(--line); }
+.q-line-v { left: 50%; top: 8%; bottom: 8%; width: 1px; }
+.q-line-h { top: 50%; left: 8%; right: 8%; height: 1px; }
+.q-axis { position: absolute; font-family: var(--display); font-size: 0.74rem; letter-spacing: 0.16em; color: var(--gray); text-align: center; line-height: 1.5; }
+.q-axis-y { top: 14px; left: 50%; transform: translateX(-50%); }
+.q-axis-x { bottom: 14px; right: 18px; }
+.q-card {
+  position: absolute; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  text-align: center; font-family: var(--serif); font-weight: 600; letter-spacing: 0.06em; line-height: 1.45;
+  padding: 18px 20px; border-radius: 2px; font-size: 0.92rem;
+}
+.q-card-other {
+  left: 13%; bottom: 18%; color: var(--gray);
+  border: 1px dashed var(--gray-soft); background: rgba(255, 255, 255, 0.02);
+}
+.q-card-slc {
+  right: 11%; top: 16%; color: #14100a;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold-mid) 55%, var(--gold-deep));
+  box-shadow: 0 14px 38px rgba(var(--gold-rgb), 0.3); font-size: 1.02rem; padding: 22px 26px;
+}
+.q-card-emblem { width: 30px; height: 30px; }
+.q-card-emblem svg { width: 100%; height: 100%; display: block; }
+.compare-points { list-style: none; max-width: 680px; margin: 40px auto 0; display: grid; gap: 0; border: 1px solid var(--line); }
+.compare-points li { padding: 22px 26px; border-bottom: 1px solid var(--line); color: var(--gray); font-size: 0.96rem; display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; }
+.compare-points li:last-child { border-bottom: none; }
+.compare-points strong { color: var(--gold-light); font-weight: 600; }
+.cp-label { flex-shrink: 0; min-width: 84px; font-family: var(--serif); color: var(--gold); font-size: 0.86rem; letter-spacing: 0.1em; }
+
+/* ===== Use cases / 活用シーン ===== */
+.usecase-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border: 1px solid var(--line); }
+.usecase-card { padding: 40px 38px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background 0.4s var(--ease); }
+.usecase-card:nth-child(2n) { border-right: none; }
+.usecase-card:nth-child(n + 3) { border-bottom: none; }
+.usecase-card:hover { background: var(--black-card); }
+.usecase-tag { display: inline-block; font-family: var(--display); font-size: 0.74rem; letter-spacing: 0.16em; color: var(--gold); border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px; margin-bottom: 18px; }
+.usecase-title { font-family: var(--serif); font-size: 1.32rem; font-weight: 600; letter-spacing: 0.04em; margin-bottom: 14px; }
+.usecase-text { font-size: 0.94rem; color: var(--gray); line-height: 1.95; margin-bottom: 20px; }
+.usecase-pill { font-size: 0.82rem; letter-spacing: 0.06em; color: var(--gold-light); }
+.usecase-note { text-align: center; margin-top: 26px; font-size: 0.82rem; color: var(--gray-soft); }
+@media (max-width: 680px) {
+  .usecase-grid { grid-template-columns: 1fr; }
+  .usecase-card { border-right: none; }
+  .usecase-card:nth-child(3) { border-bottom: 1px solid var(--line); }
+  .compare-quadrant { aspect-ratio: 1 / 0.92; }
+  .q-card-slc, .q-card-other { font-size: 0.82rem; padding: 14px 16px; }
+}
+
 /* ===== Flow / ご相談の流れ ===== */
 .flow { background: var(--black-soft); }
 .flow-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); }

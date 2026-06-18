@@ -119,6 +119,8 @@ const crumbLabels = {
   vision: '企業理念',
   business: '事業内容',
   strength: '選ばれる理由',
+  compare: '他社との違い',
+  usecase: '活用シーン',
   flow: 'ご相談の流れ',
   company: '会社概要',
   faq: 'よくある質問',
