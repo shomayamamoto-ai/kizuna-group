@@ -328,11 +328,7 @@ body.nav-locked { overflow: hidden; }
   text-transform: uppercase; color: var(--white);
   margin-bottom: 16px; display: flex; align-items: flex-start; gap: 16px;
 }
-.section-en .num {
-  font-family: var(--display); font-size: clamp(0.85rem, 1.5vw, 1.05rem);
-  font-weight: 600; color: var(--gold); opacity: 0.85;
-  letter-spacing: 0.12em; margin-top: 0.55em;
-}
+.section-en .num { display: none; }
 .section-head.center .section-en, .section-en.center { justify-content: center; }
 .section-title {
   font-family: var(--serif); font-weight: 500;
