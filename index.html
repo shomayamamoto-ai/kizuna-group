@@ -17,10 +17,14 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Opening movie (SLC original, ~2.6s) -->
+  <!-- Opening movie (SLC original, cinematic) -->
   <div class="intro" id="loader" role="presentation">
+    <div class="intro-bar intro-bar-top" aria-hidden="true"></div>
+    <div class="intro-bar intro-bar-bottom" aria-hidden="true"></div>
+    <span class="intro-line" aria-hidden="true"></span>
     <div class="intro-glow" aria-hidden="true"></div>
     <div class="intro-rings" aria-hidden="true"><span></span><span></span></div>
+    <div class="intro-dust" id="introDust" aria-hidden="true"></div>
     <div class="intro-inner">
       <div class="intro-logo">
         <img src="assets/logo.jpg" alt="株式会社SLC" />

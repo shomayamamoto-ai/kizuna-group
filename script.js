@@ -17,8 +17,25 @@
   intro.addEventListener('click', (e) => {
     if (e.target === intro) dismiss();
   });
+
+  // 金の粉塵（ダスト）を生成
+  const dustHost = document.getElementById('introDust');
+  if (dustHost && !reduce) {
+    const count = window.innerWidth < 600 ? 18 : 30;
+    for (let i = 0; i < count; i++) {
+      const d = document.createElement('span');
+      d.style.left = Math.random() * 100 + '%';
+      const s = (2 + Math.random() * 2.6).toFixed(1);
+      d.style.width = s + 'px';
+      d.style.height = s + 'px';
+      d.style.animationDuration = (3 + Math.random() * 3).toFixed(2) + 's';
+      d.style.animationDelay = (Math.random() * 1.6).toFixed(2) + 's';
+      dustHost.appendChild(d);
+    }
+  }
+
   // 自動で再生し終えたら閉幕（reduced-motion は短縮）
-  window.addEventListener('load', () => setTimeout(dismiss, reduce ? 500 : 2500));
+  window.addEventListener('load', () => setTimeout(dismiss, reduce ? 500 : 3000));
 })();
 
 // ===== Header scroll state + progress bar + to-top =====
